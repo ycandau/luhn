@@ -59,16 +59,20 @@ const getDigits = (number) => {
 
 assertArraysEqual(getDigits(1234), [4, 3, 2, 1]);
 
-// Recursively sum digits until less than 10
-const sumDigits = (number) => {
-  if (number < 10) return number;
-  return sumDigits(getDigits(number).reduce(sum));
-};
+// Sum the digits
+
+// Not necessary to recurse because at most 18
+// Recursive version:
+//   if (number < 10) return number;
+//   return sumDigits(getDigits(number).reduce(sum));
+
+const sumDigits = (number) =>
+  number >= 10 ? (number % 10) + ((number / 10) >> 0) : number;
 
 assertEqual(sumDigits(0), 0);
 assertEqual(sumDigits(7), 7);
 assertEqual(sumDigits(11), 2);
-assertEqual(sumDigits(9993), 3);
+// assertEqual(sumDigits(9993), 3);
 
 //------------------------------------------------------------------------------
 // Actual function
